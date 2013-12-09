@@ -59,6 +59,7 @@ void CControlText1Dlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX,IDC_LIST,m_list);
 	DDX_Control(pDX,IDC_ADD_EDIT,m_edit);
+	DDX_Control(pDX,IDC_COMBO,m_combo);
 }
 
 BEGIN_MESSAGE_MAP(CControlText1Dlg, CDialogEx)
@@ -69,6 +70,7 @@ BEGIN_MESSAGE_MAP(CControlText1Dlg, CDialogEx)
 	ON_BN_CLICKED(IDC_ADD_BUTTON, &CControlText1Dlg::OnBnClickedAddButton)
 	ON_BN_CLICKED(IDC_REINPUT_BUTTON, &CControlText1Dlg::OnBnClickedReinputButton)
 	ON_BN_CLICKED(IDC_UP_BUTTON, &CControlText1Dlg::OnBnClickedUpButton)
+	ON_BN_CLICKED(IDC_ADDCOM_BUTTON, &CControlText1Dlg::OnBnClickedAddcomButton)
 END_MESSAGE_MAP()
 
 
@@ -104,6 +106,12 @@ BOOL CControlText1Dlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// 设置小图标
 
 	// TODO: 在此添加额外的初始化代码
+	m_combo.AddString(_T("the 1 line have a look!"));
+	m_combo.AddString(_T("the 2 line have a look!"));
+	m_combo.AddString(_T("the 3 line have a look!"));
+	m_combo.AddString(_T("the 4 line have a look!"));
+	m_combo.AddString(_T("the 5 line have a look!"));
+	//m_combo.SetTopIndex(2);
 
 	return TRUE;  // 除非将焦点设置到控件，否则返回 TRUE
 }
@@ -167,21 +175,35 @@ void CControlText1Dlg::OnBnClickedDeleteallButton()
 
 void CControlText1Dlg::OnBnClickedAddButton()
 {
-	CString addText,tempStr;
+	CString addText,tempStr,msgTxt,msgCap;
 	BOOL tagInsert;
+	tagInsert = TRUE;
 	m_edit.GetWindowText(addText);
-	m_edit.SetWindowText(NULL);
+	addText.Trim(_T(" "));
 	int m_count = m_list.GetCount();
 	if (m_count ==0)
-		m_list.AddString(addText);
-
-	for (int i=0;i<m_count||tagInsert==FALSE;i++)
 	{
-		m_list.GetText(i,tempStr);
-		if(tempStr == addText)
-			tagInsert = FALSE;
+		m_list.AddString(addText);
+		m_edit.SetWindowText(NULL);
 	}
-	if (tagInsert == TRUE) m_list.AddString(addText);
+	else
+	{
+		for (int i=0;i<m_count;i++)
+		{
+			m_list.GetText(i,tempStr);
+			if(tempStr == addText)
+			{
+				tagInsert = FALSE;
+				msgCap.LoadString(IDS_MSGCAP);
+				msgTxt.LoadString(IDS_MSGTXT);
+				MessageBox(msgTxt,msgCap);
+				return;
+			}
+		}
+		m_list.AddString(addText);
+		m_edit.SetWindowText(NULL);
+	}
+
 }
 
 
@@ -196,11 +218,30 @@ void CControlText1Dlg::OnBnClickedUpButton()
 	//CString stext;
 	//stext.Format(_T("%d"),m_list.GetCurSel());
 	//m_edit.SetWindowText(stext);
-	if (m_list.GetCurSel() == -1)
+	if (m_list.GetCurSel() == -1||m_list.GetCurSel()==0)
 		return;
 	else
 	{
-//		MessageBox(_T("letmegoahead"));
+		MessageBox(_T("letmegoahead"));
 	}
 	
+}
+
+
+void CControlText1Dlg::OnBnClickedAddcomButton()
+{
+	CString displaytxt;
+	int indexCombo;
+	//m_combo.AddString(_T("the 1 line have a look!"));
+	//m_combo.AddString(_T("the 2 line have a look!"));
+	//m_combo.AddString(_T("the 3 line have a look!"));
+	//m_combo.AddString(_T("the 4 line have a look!"));
+	//m_combo.AddString(_T("the 5 line have a look!"));
+	//m_combo.SetTopIndex(m_combo.GetCount()/2);
+	//m_combo.GetLBText(2,displaytxt);
+	m_combo.SetTopIndex(3);
+	indexCombo = m_combo.GetTopIndex();
+	displaytxt.Format(_T("%d"),indexCombo);
+	MessageBox(displaytxt);
+
 }

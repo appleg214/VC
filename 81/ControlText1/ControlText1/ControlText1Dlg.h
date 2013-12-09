@@ -13,6 +13,7 @@ public:
 	CControlText1Dlg(CWnd* pParent = NULL);	// 标准构造函数
 	CListBox m_list;
 	CEdit m_edit;
+	CComboBox m_combo;
 // 对话框数据
 	enum { IDD = IDD_CONTROLTEXT1_DIALOG };
 
@@ -35,4 +36,5 @@ public:
 	afx_msg void OnBnClickedAddButton();
 	afx_msg void OnBnClickedReinputButton();
 	afx_msg void OnBnClickedUpButton();
+	afx_msg void OnBnClickedAddcomButton();
 };

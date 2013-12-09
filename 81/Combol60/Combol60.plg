@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>Build Log</h1>
+<h3>
+--------------------Configuration: Combol60 - Win32 Debug--------------------
+</h3>
+<h3>Command Lines</h3>
+Creating temporary file "C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP180.tmp" with contents
+[
+/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /Fp"Debug/Combol60.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ   /c 
+"D:\Share\VC\81\Combol60\Combol60Dlg.cpp"
+]
+Creating command line "cl.exe @C:\DOCUME~1\ADMINI~1\LOCALS~1\Temp\RSP180.tmp" 
+Creating command line "link.exe /nologo /subsystem:windows /incremental:yes /pdb:"Debug/Combol60.pdb" /debug /machine:I386 /out:"Debug/Combol60.exe" /pdbtype:sept  .\Debug\Combol60.obj .\Debug\Combol60Dlg.obj .\Debug\StdAfx.obj .\Debug\Combol60.res "
+<h3>Output Window</h3>
+Compiling...
+Combol60Dlg.cpp
+Linking...
+
+
+
+<h3>Results</h3>
+Combol60.exe - 0 error(s), 0 warning(s)
+</pre>
+</body>
+</html>
